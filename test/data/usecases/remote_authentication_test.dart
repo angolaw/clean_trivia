@@ -1,3 +1,4 @@
+import 'package:clean_trivia/domain/entities/entities.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -106,5 +107,17 @@ void main() {
 
     final account = await sut.auth(params);
     expect(account.token, accessToken);
+  });
+  test(
+      'should throw UnexpectedError if HttpClient returns 200 with invalid data',
+      () async {
+    when(httpClient.request(
+            url: anyNamed('url'),
+            method: anyNamed('method'),
+            body: anyNamed('body')))
+        .thenAnswer((_) async => {"invalid_key": 'invalid_value'});
+
+    final future = sut.auth(params);
+    expect(future, throwsA(DomainError.unexpected));
   });
 }

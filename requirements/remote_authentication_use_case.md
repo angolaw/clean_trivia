@@ -17,7 +17,7 @@
 
 ## Exceção - Resposta Inválida
 
-1. Sistema retorna a mensagem de erro inesperado
+1. ✅ Sistema retorna a mensagem de erro inesperado
 
 ## Exceção - Falha no servidor
 
