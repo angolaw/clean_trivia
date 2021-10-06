@@ -3,21 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:meta/meta.dart';
 import 'package:mockito/mockito.dart';
 import 'package:clean_trivia/domain/usecases/authentication.dart';
-
-class RemoteAuthentication {
-  final HttpClient httpClient;
-  final String url;
-
-  RemoteAuthentication({@required this.httpClient, @required this.url});
-  Future<void> auth(AuthenticationParams params) async {
-    await httpClient.request(url: url, method: 'post', body: params.toJson());
-  }
-}
-
-abstract class HttpClient {
-  Future<void> request(
-      {@required String url, @required String method, Map body}) async {}
-}
+import 'package:clean_trivia/data/usecases/remote_authentication.dart';
+import 'package:clean_trivia/data/http/http_client.dart';
 
 class HttpClientSpy extends Mock implements HttpClient {}
 
