@@ -1,4 +1,3 @@
-import 'package:clean_trivia/domain/entities/entities.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -106,6 +105,6 @@ void main() {
             {"accessToken": accessToken, "name": faker.person.firstName()});
 
     final account = await sut.auth(params);
-    expect(account.accessToken, accessToken);
+    expect(account.token, accessToken);
   });
 }
