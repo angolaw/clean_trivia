@@ -106,6 +106,6 @@ void main() {
             {"accessToken": accessToken, "name": faker.person.firstName()});
 
     final account = await sut.auth(params);
-    expect(account.token, accessToken);
+    expect(account.accessToken, accessToken);
   });
 }

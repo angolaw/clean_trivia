@@ -11,12 +11,12 @@ class RemoteAuthentication {
   final String url;
 
   RemoteAuthentication({@required this.httpClient, @required this.url});
-  Future<RemoteAccountModel> auth(AuthenticationParams params) async {
+  Future<AccountEntity> auth(AuthenticationParams params) async {
     final body = RemoteAuthenticationParams.fromDomain(params).toJson();
     try {
       final httpResponse =
           await httpClient.request(url: url, method: 'post', body: body);
-      return RemoteAccountModel.fromJson(httpResponse);
+      return RemoteAccountModel.fromJson(httpResponse).toEntity();
     } on HttpError catch (e) {
       e == HttpError.unauthorized
           ? throw DomainError.invalidCredentials
