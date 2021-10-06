@@ -24,8 +24,15 @@ void main() {
     );
   });
   test('Should call HttpClient with correct url', () async {
-    when(httpClient.request(url: url, method: 'post'))
-        .thenAnswer((_) async => null);
+    when(httpClient.request(
+            url: anyNamed('url'),
+            method: anyNamed('method'),
+            body: anyNamed('body')))
+        .thenAnswer((_) async => {
+              "accessToken": faker.guid.guid(),
+              "name": faker.person.firstName()
+            });
+
     await sut.auth(params);
     verify(httpClient.request(url: url, method: 'post', body: {
       'email': params.email,
