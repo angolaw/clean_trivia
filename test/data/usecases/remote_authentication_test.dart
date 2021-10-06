@@ -1,6 +1,5 @@
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:meta/meta.dart';
 import 'package:mockito/mockito.dart';
 import 'package:clean_trivia/domain/usecases/usecases.dart';
 import 'package:clean_trivia/data/usecases/usecases.dart';
