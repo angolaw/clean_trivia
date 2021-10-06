@@ -1,3 +1,4 @@
+import 'package:clean_trivia/domain/entities/entities.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -87,5 +88,17 @@ void main() {
       'password': params.secret,
     }));
     expect(future, throwsA(DomainError.invalidCredentials));
+  });
+  test('should return an Account if HttpClient returns 200', () async {
+    final accessToken = faker.guid.guid();
+    when(httpClient.request(
+            url: anyNamed('url'),
+            method: anyNamed('method'),
+            body: anyNamed('body')))
+        .thenAnswer((_) async =>
+            {"accessToken": accessToken, "name": faker.person.firstName()});
+
+    final account = await sut.auth(params);
+    expect(account.token, accessToken);
   });
 }

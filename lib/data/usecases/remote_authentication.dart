@@ -1,4 +1,5 @@
 import 'package:clean_trivia/data/http/http.dart';
+import 'package:clean_trivia/domain/entities/account_entity.dart';
 import 'package:clean_trivia/domain/helpers/helpers.dart';
 import 'package:meta/meta.dart';
 import '../http/http_client.dart';
@@ -9,7 +10,7 @@ class RemoteAuthentication {
   final String url;
 
   RemoteAuthentication({@required this.httpClient, @required this.url});
-  Future<void> auth(AuthenticationParams params) async {
+  Future<AccountEntity> auth(AuthenticationParams params) async {
     final body = RemoteAuthenticationParams.fromDomain(params).toJson();
     try {
       await httpClient.request(url: url, method: 'post', body: body);
