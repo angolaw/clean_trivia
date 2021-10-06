@@ -2,9 +2,9 @@ import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:meta/meta.dart';
 import 'package:mockito/mockito.dart';
-import 'package:clean_trivia/domain/usecases/authentication.dart';
-import 'package:clean_trivia/data/usecases/remote_authentication.dart';
-import 'package:clean_trivia/data/http/http_client.dart';
+import 'package:clean_trivia/domain/usecases/usecases.dart';
+import 'package:clean_trivia/data/usecases/usecases.dart';
+import 'package:clean_trivia/data/http/http.dart';
 
 class HttpClientSpy extends Mock implements HttpClient {}
 
