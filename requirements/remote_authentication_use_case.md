@@ -13,7 +13,7 @@
 
 ## Exceção - Dados inválidos
 
-1. Sistema retorna a mensagem de erro inesperado
+1. ✅ Sistema retorna a mensagem de erro inesperado
 
 ## Exceção - Resposta Inválida
 
