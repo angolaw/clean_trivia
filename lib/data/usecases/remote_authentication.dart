@@ -15,7 +15,7 @@ class RemoteAuthentication {
     try {
       final httpResponse =
           await httpClient.request(url: url, method: 'post', body: body);
-      ;
+      return AccountEntity.fromJson(httpResponse);
     } on HttpError catch (e) {
       e == HttpError.unauthorized
           ? throw DomainError.invalidCredentials
