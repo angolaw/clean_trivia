@@ -1,4 +1,5 @@
 import 'package:clean_trivia/data/http/http.dart';
+import 'package:clean_trivia/data/models/remote_account_model.dart';
 import 'package:clean_trivia/domain/entities/account_entity.dart';
 import 'package:clean_trivia/domain/helpers/helpers.dart';
 import 'package:meta/meta.dart';
@@ -10,12 +11,12 @@ class RemoteAuthentication {
   final String url;
 
   RemoteAuthentication({@required this.httpClient, @required this.url});
-  Future<AccountEntity> auth(AuthenticationParams params) async {
+  Future<RemoteAccountModel> auth(AuthenticationParams params) async {
     final body = RemoteAuthenticationParams.fromDomain(params).toJson();
     try {
       final httpResponse =
           await httpClient.request(url: url, method: 'post', body: body);
-      return AccountEntity.fromJson(httpResponse);
+      return RemoteAccountModel.fromJson(httpResponse);
     } on HttpError catch (e) {
       e == HttpError.unauthorized
           ? throw DomainError.invalidCredentials
