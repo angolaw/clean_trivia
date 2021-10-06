@@ -25,4 +25,4 @@
 
 ## Exceção - Credenciais inválidas
 
-1. Sistema retorna a mensagem de erro informando que as credenciais estão erradas
+1. ✅ Sistema retorna a mensagem de erro informando que as credenciais estão erradas
