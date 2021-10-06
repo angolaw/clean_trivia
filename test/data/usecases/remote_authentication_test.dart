@@ -29,4 +29,14 @@ void main() {
       'password': params.secret,
     }));
   });
+  test('Should call HttpClient with correct url and empty body', () async {
+    final params = AuthenticationParams(
+      email: faker.internet.email(),
+      secret: faker.internet.password(),
+    );
+    when(httpClient.request(url: url, method: 'post'))
+        .thenAnswer((_) async => null);
+    await sut.auth(params);
+    verify(httpClient.request(url: url, method: 'post', body: {}));
+  });
 }

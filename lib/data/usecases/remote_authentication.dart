@@ -1,4 +1,3 @@
-import 'package:clean_trivia/domain/entities/entities.dart';
 import 'package:meta/meta.dart';
 import '../http/http_client.dart';
 import '../../domain/usecases/authentication.dart';
