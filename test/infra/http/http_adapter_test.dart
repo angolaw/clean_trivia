@@ -10,10 +10,10 @@ class HttpAdapter {
   final Client client;
 
   HttpAdapter(this.client);
-  Future<void> request(
-      {@required String url,
-      @required String method,
-      @required Map<String, String> headers}) async {
+  Future<void> request({
+    @required String url,
+    @required String method,
+  }) async {
     final headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -23,11 +23,16 @@ class HttpAdapter {
 }
 
 void main() {
+  ClientSpy client;
+  HttpAdapter sut;
+  String url;
+  setUp(() {
+    client = ClientSpy();
+    sut = HttpAdapter(client);
+    url = faker.internet.httpUrl();
+  });
   group('POST', () {
     test('should call POST with correct values', () async {
-      final client = ClientSpy();
-      final sut = HttpAdapter(client);
-      final url = faker.internet.httpUrl();
       await sut.request(
         url: url,
         method: 'post',
