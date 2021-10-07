@@ -18,7 +18,8 @@ class HttpAdapter {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     };
-    await client.post(url, headers: headers, body: json.encode(body));
+    await client.post(url,
+        headers: headers, body: body != null ? json.encode(body) : null);
   }
 }
 
@@ -41,6 +42,16 @@ void main() {
             'Accept': 'application/json'
           },
           body: '{"any_key":"any_value"}'));
+    });
+    test('should call POST  with empty body', () async {
+      await sut.request(
+        url: url,
+        method: 'post',
+      );
+      verify(client.post(
+        any,
+        headers: anyNamed('headers'),
+      ));
     });
   });
 }
