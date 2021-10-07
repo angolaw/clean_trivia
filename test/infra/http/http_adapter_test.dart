@@ -10,11 +10,15 @@ class HttpAdapter {
   final Client client;
 
   HttpAdapter(this.client);
-  Future<void> request({
-    @required String url,
-    @required String method,
-  }) async {
-    await client.post(url);
+  Future<void> request(
+      {@required String url,
+      @required String method,
+      @required Map<String, String> headers}) async {
+    final headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    };
+    await client.post(url, headers: headers);
   }
 }
 
@@ -24,8 +28,17 @@ void main() {
       final client = ClientSpy();
       final sut = HttpAdapter(client);
       final url = faker.internet.httpUrl();
-      await sut.request(url: url, method: 'post');
-      verify(client.post(url));
+      await sut.request(
+        url: url,
+        method: 'post',
+      );
+      verify(client.post(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+      ));
     });
   });
 }
